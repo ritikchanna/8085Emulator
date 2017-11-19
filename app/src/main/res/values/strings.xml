@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">8085 Emulator</string>
+    <string-array name="device_spinner">
+        <item>IN</item>
+        <item>OUT</item>
+
+    </string-array>
+
+    <string name="title_activity_index">index</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+</resources>
+

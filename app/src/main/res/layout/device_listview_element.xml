@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/device_address_listview"
+        android:layout_width="65dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="0dp"
+        android:capitalize="characters"
+        android:ems="10"
+        android:enabled="false"
+        android:hint="I07H"
+
+        android:singleLine="true"
+        app:layout_constraintBottom_toBottomOf="@+id/device_type_spinner"
+        app:layout_constraintLeft_toRightOf="@+id/device_type_spinner"
+        app:layout_constraintTop_toTopOf="@+id/device_type_spinner"
+        app:layout_constraintVertical_bias="0.0"
+        android:textColor="#f2f5f7"
+        android:fontFamily="bold"
+        android:textStyle="bold"
+        android:backgroundTint="@color/black_overlay"
+        android:inputType="textNoSuggestions|textCapCharacters"/>
+
+    <EditText
+        android:id="@+id/device_content_listview"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="-16dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="0dp"
+        android:capitalize="characters"
+        android:ems="10"
+        android:enabled="false"
+
+        android:textColor="#f9fcff"
+        app:layout_constraintBottom_toBottomOf="@+id/device_address_listview"
+        app:layout_constraintLeft_toRightOf="@+id/device_address_listview"
+        app:layout_constraintTop_toTopOf="@+id/device_address_listview"
+        app:layout_constraintVertical_bias="0.0"
+        android:backgroundTint="@color/black_overlay"
+        android:inputType="textNoSuggestions|textCapCharacters"/>
+
+    <ImageButton
+        android:id="@+id/device_delete_listview"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="7dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="0dp"
+        android:background="@android:color/transparent"
+        android:src="@android:drawable/ic_delete"
+        app:layout_constraintBottom_toBottomOf="@+id/device_content_listview"
+        app:layout_constraintLeft_toRightOf="@+id/device_content_listview"
+        app:layout_constraintTop_toTopOf="@+id/device_content_listview"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <ImageButton
+        android:id="@+id/device_save_listview"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="7dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="0dp"
+        android:background="@android:color/transparent"
+        android:src="@android:drawable/ic_menu_edit"
+        app:layout_constraintBottom_toBottomOf="@+id/device_delete_listview"
+        app:layout_constraintLeft_toRightOf="@+id/device_delete_listview"
+        app:layout_constraintTop_toTopOf="@+id/device_delete_listview"
+        app:layout_constraintVertical_bias="0.25" />
+
+    <Spinner
+        android:id="@+id/device_type_spinner"
+        android:layout_width="95dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="6dp"
+        android:clickable="false"
+        android:textColor="#f9fcff"
+
+        android:prompt="@string/app_name"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+</android.support.constraint.ConstraintLayout>

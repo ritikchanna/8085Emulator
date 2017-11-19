@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textview_address_lv_assemble"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0000H"
+        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginStart="5dp"
+        tools:layout_editor_absoluteY="16dp"
+        android:layout_marginLeft="5dp"
+        android:textColor="#f2f5f7"
+        android:fontFamily="bold"
+        android:textStyle="bold"/>
+
+    <EditText
+        android:id="@+id/edittext_content_lv_assemble"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="0dp"
+        android:capitalize="characters"
+        android:hint="Instruction"
+
+        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
+        app:layout_constraintBottom_toBottomOf="@+id/textview_address_lv_assemble"
+        app:layout_constraintLeft_toRightOf="@+id/textview_address_lv_assemble"
+        app:layout_constraintTop_toTopOf="@+id/textview_address_lv_assemble"
+        app:layout_constraintVertical_bias="0.428"
+        android:textColor="#f9fcff"
+        android:textColorHint="#88dbdee1"
+        android:backgroundTint="@color/black_overlay"
+        android:inputType="textNoSuggestions|textCapCharacters"/>
+
+    <ImageButton
+        android:id="@+id/button_help_lv_assemble"
+        android:layout_width="51dp"
+        android:layout_height="38dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="8dp"
+        android:elevation="4dp"
+        android:src="@android:drawable/ic_menu_help"
+        app:layout_constraintBottom_toBottomOf="@+id/edittext_content_lv_assemble"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toRightOf="@+id/edittext_content_lv_assemble"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/edittext_content_lv_assemble"
+        android:background="@android:color/transparent"/>
+    <ImageButton
+        android:id="@+id/button_done_lv_assemble"
+        android:layout_width="53dp"
+        android:layout_height="38dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="8dp"
+        android:elevation="4dp"
+        android:src="@android:drawable/ic_menu_send"
+        app:layout_constraintBottom_toBottomOf="@+id/edittext_content_lv_assemble"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toRightOf="@+id/button_help_lv_assemble"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/edittext_content_lv_assemble"
+        android:background="@android:color/transparent"/>
+</android.support.constraint.ConstraintLayout>
