@@ -4,18 +4,17 @@
     android:id="@+id/activity_memory"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#2d2f30"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="ritik.e8085.Memory"
-    android:background="#2d2f30">
+    tools:context="ritik.e8085.Memory">
 
     <ListView
         android:id="@+id/listview_memory_locations"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-    </ListView>
+        android:layout_height="wrap_content"></ListView>
 
 
 </RelativeLayout>

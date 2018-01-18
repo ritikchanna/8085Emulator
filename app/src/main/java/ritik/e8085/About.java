@@ -1,16 +1,15 @@
 package ritik.e8085;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class About extends AppCompatActivity {
-    TextView suggestion,developedby;
+    TextView suggestion, developedby;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,14 +17,14 @@ public class About extends AppCompatActivity {
         setContentView(R.layout.activity_about);
         getSupportActionBar().hide();
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        suggestion=(TextView)findViewById(R.id.suggestions);
+        suggestion = (TextView) findViewById(R.id.suggestions);
         suggestion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 final Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
                 emailIntent.setType("text/plain");
 
-                emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL,new String[]{  "chnritik@gmail.com"});
+                emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[]{"chnritik@gmail.com"});
                 emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Regarding 8085 Emulator App (Leotik Labs)");
                 emailIntent.setType("message/rfc822");
 
@@ -40,17 +39,17 @@ public class About extends AppCompatActivity {
 
             }
         });
-        developedby=(TextView)findViewById(R.id.developer);
+        developedby = (TextView) findViewById(R.id.developer);
         developedby.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(developedby.getText().equals("Ritik Channa"))
+                if (developedby.getText().equals("Ritik Channa"))
                     developedby.setText("Leotik Labs");
-                    else
+                else
                     developedby.setText("Ritik Channa");
             }
         });
-            }
+    }
 
 
 }

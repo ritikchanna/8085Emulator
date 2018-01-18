@@ -1,7 +1,5 @@
 package ritik.e8085;
 
-import java.util.ArrayList;
-
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
@@ -16,19 +14,21 @@ import android.view.View;
 import android.widget.AbsListView;
 import android.widget.ListView;
 
-public class Memory extends Activity {
+import java.util.ArrayList;
+
+public class Memory extends Activity implements AbsListView.OnScrollListener {
 
     SQLiteHelper SQLITEHELPER;
     SQLiteDatabase SQLITEDATABASE;
     Cursor cursor;
-    SQLiteListAdapter ListAdapter ;
+    SQLiteListAdapter ListAdapter;
 
     ArrayList<String> ADDRESS_ArrayList = new ArrayList<String>();
     ArrayList<String> CONTENT_ArrayList = new ArrayList<String>();
     ListView LISTVIEW;
     TypeHelper typehelper;
+    String last_memory = "0000G";
     private boolean isLoadMore = false;
-    String last_memory="0000G";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -42,17 +42,33 @@ public class Memory extends Activity {
 
         typehelper = new TypeHelper();
         String starting_address = getIntent().getStringExtra("address");
-        Log.d("Ritik", "onCreate: "+starting_address);
-        if (starting_address.length()>4){
+        Log.d("Ritik", "onCreate: " + starting_address);
+        if (starting_address.length() > 4) {
             starting_address = typehelper.Dec2Hex(Integer.toString(Integer.parseInt(typehelper.Hex2Dec(starting_address.substring(0, starting_address.length() - 1))) - 1));
-        starting_address = new String(new char[4 - starting_address.length()]).replace('\0', '0') + starting_address + "H";
+            starting_address = new String(new char[4 - starting_address.length()]).replace('\0', '0') + starting_address + "H";
+        } else
+            starting_address = "0000G";
+
+        ShowSQLiteDBdata(starting_address);
+
+
     }
-    else
-        starting_address="0000G";
 
-        ShowSQLiteDBdata(starting_address) ;
+    //TODO bug fixed here
+    @Override
+    public void onScroll(AbsListView view, int firstVisibleItem,
+                         int visibleItemCount, int totalItemCount) {
+        // do nothing
+    }
 
-
+    @Override
+    public void onScrollStateChanged(AbsListView view, int scrollState) {
+        if (SCROLL_STATE_TOUCH_SCROLL == scrollState) {
+            View currentFocus = getCurrentFocus();
+            if (currentFocus != null) {
+                currentFocus.clearFocus();
+            }
+        }
     }
 
     @Override
@@ -70,14 +86,14 @@ public class Memory extends Activity {
             public void onScroll(AbsListView view, int firstVisibleItem,
                                  int visibleItemCount, int totalItemCount) {
                 int lastInScreen = firstVisibleItem + visibleItemCount;
-                if((lastInScreen == totalItemCount)){
+                if ((lastInScreen == totalItemCount)) {
 
 
-                        //isLoadMore = true;
-                        // Add footer to ListView
-                        //list.addFooterView(loadingFooter);
-                        last_memory=new String(new char[4-typehelper.Dec2Hex(Integer.toString(totalItemCount-1)).length()]).replace('\0', '0')+typehelper.Dec2Hex(Integer.toString(totalItemCount-1))+"H";
-                        ShowSQLiteDBdata(last_memory);
+                    //isLoadMore = true;
+                    // Add footer to ListView
+                    //list.addFooterView(loadingFooter);
+                    last_memory = new String(new char[4 - typehelper.Dec2Hex(Integer.toString(totalItemCount - 1)).length()]).replace('\0', '0') + typehelper.Dec2Hex(Integer.toString(totalItemCount - 1)) + "H";
+                    ShowSQLiteDBdata(last_memory);
 
 
                 }
@@ -90,26 +106,25 @@ public class Memory extends Activity {
 
         SQLITEDATABASE = SQLITEHELPER.getWritableDatabase();
 
-        cursor = SQLITEDATABASE.rawQuery("SELECT * FROM "+SQLITEHELPER.TABLE_NAME+" LIMIT 40", null);
-        if(cursor.getCount()<10)
-        {
+        cursor = SQLITEDATABASE.rawQuery("SELECT * FROM " + SQLiteHelper.TABLE_NAME + " LIMIT 40", null);
+        if (cursor.getCount() < 10) {
             initiate_memory task = new initiate_memory(Memory.this);
             task.execute();
         }
 
 
-        cursor = SQLITEDATABASE.rawQuery("SELECT * FROM "+SQLITEHELPER.TABLE_NAME+" WHERE "+SQLITEHELPER.KEY_ADDRESS+" > '"+last_address+"' LIMIT 100", null);
+        cursor = SQLITEDATABASE.rawQuery("SELECT * FROM " + SQLiteHelper.TABLE_NAME + " WHERE " + SQLiteHelper.KEY_ADDRESS + " > '" + last_address + "' LIMIT 100", null);
 
         //ADDRESS_ArrayList.clear();
         //CONTENT_ArrayList.clear();
 
-        final int index =LISTVIEW.getFirstVisiblePosition();
+        final int index = LISTVIEW.getFirstVisiblePosition();
         View v = LISTVIEW.getChildAt(0);
         final int top = (v == null) ? 0 : v.getTop();
 
 
         if (cursor.moveToFirst()) {
-            Log.d("Ritik", "Cursor firsst address: "+cursor.getString((cursor.getColumnIndex(SQLiteHelper.KEY_ADDRESS))));
+            Log.d("Ritik", "Cursor firsst address: " + cursor.getString((cursor.getColumnIndex(SQLiteHelper.KEY_ADDRESS))));
             do {
                 ADDRESS_ArrayList.add(cursor.getString(cursor.getColumnIndex(SQLiteHelper.KEY_ADDRESS)));
 
@@ -129,19 +144,16 @@ public class Memory extends Activity {
 //        });
 
 
-
-
-
         cursor.close();
     }
 
-public void reset(int index,String Content){
-    Log.d("Ritik", "reset: "+index+" "+Content);
-    CONTENT_ArrayList.set(index,Content);
-    Log.d("Ritik", "reset: 1");
-    ListAdapter.notifyDataSetChanged();
-    Log.d("Ritik", "reset: 2");
-}
+    public void reset(int index, String Content) {
+        Log.d("Ritik", "reset: " + index + " " + Content);
+        CONTENT_ArrayList.set(index, Content);
+        Log.d("Ritik", "reset: 1");
+        ListAdapter.notifyDataSetChanged();
+        Log.d("Ritik", "reset: 2");
+    }
 
 
     private class initiate_memory extends AsyncTask<Void, Void, Void> {
@@ -158,7 +170,7 @@ public void reset(int index,String Content){
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     dialog.dismiss();
-                    startActivity(new Intent(Memory.this,MainActivity2.class));
+                    startActivity(new Intent(Memory.this, MainActivity2.class));
                 }
             });
 
@@ -179,7 +191,6 @@ public void reset(int index,String Content){
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
 
 
             return null;

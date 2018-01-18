@@ -29,7 +29,7 @@ public class Devices extends Activity {
     SQLiteHelper SQLITEHELPER;
     SQLiteDatabase SQLITEDATABASE;
     Cursor cursor;
-    DevicesAdapter ListAdapter ;
+    DevicesAdapter ListAdapter;
 
     ArrayList<String> ADDRESS_ArrayList = new ArrayList<String>();
     ArrayList<String> CONTENT_ArrayList = new ArrayList<String>();
@@ -64,7 +64,7 @@ public class Devices extends Activity {
         });
 
 
-        ShowSQLiteDBdata() ;
+        ShowSQLiteDBdata();
 
 //        if(new PrefsHelper().isFirstrun(getApplicationContext())) {
 //            sv = new ShowcaseView.Builder(this)
@@ -151,10 +151,9 @@ public class Devices extends Activity {
 
         SQLITEDATABASE = SQLITEHELPER.getWritableDatabase();
 
-        cursor = SQLITEDATABASE.query(true, TABLE_NAME, new String[] {KEY_ADDRESS,KEY_CONTENT},
+        cursor = SQLITEDATABASE.query(true, TABLE_NAME, new String[]{KEY_ADDRESS, KEY_CONTENT},
                 KEY_ADDRESS + " LIKE 'S%'", null, null, null, null, null);
-        if(cursor.getCount()<1)
-        {
+        if (cursor.getCount() < 1) {
             Devices.initiate_devices task = new Devices.initiate_devices(Devices.this);
             task.execute();
         }
@@ -169,7 +168,7 @@ public class Devices extends Activity {
 
 
         if (cursor.moveToFirst()) {
-            Log.d("Ritik", "Cursor firsst address: "+cursor.getString((cursor.getColumnIndex(SQLiteHelper.KEY_ADDRESS))));
+            Log.d("Ritik", "Cursor firsst address: " + cursor.getString((cursor.getColumnIndex(SQLiteHelper.KEY_ADDRESS))));
             do {
                 ADDRESS_ArrayList.add(cursor.getString(cursor.getColumnIndex(SQLiteHelper.KEY_ADDRESS)));
 
@@ -177,10 +176,10 @@ public class Devices extends Activity {
 
             } while (cursor.moveToNext());
         }
-        cursor = SQLITEDATABASE.query(true, TABLE_NAME, new String[] {KEY_ADDRESS,KEY_CONTENT},
+        cursor = SQLITEDATABASE.query(true, TABLE_NAME, new String[]{KEY_ADDRESS, KEY_CONTENT},
                 KEY_ADDRESS + " LIKE 'DI%'", null, null, null, null, null);
         if (cursor.moveToFirst()) {
-            Log.d("Ritik", "Cursor firsst address: "+cursor.getString((cursor.getColumnIndex(SQLiteHelper.KEY_ADDRESS))));
+            Log.d("Ritik", "Cursor firsst address: " + cursor.getString((cursor.getColumnIndex(SQLiteHelper.KEY_ADDRESS))));
             do {
                 ADDRESS_ArrayList.add(cursor.getString(cursor.getColumnIndex(SQLiteHelper.KEY_ADDRESS)));
 
@@ -188,10 +187,10 @@ public class Devices extends Activity {
 
             } while (cursor.moveToNext());
         }
-        cursor = SQLITEDATABASE.query(true, TABLE_NAME, new String[] {KEY_ADDRESS,KEY_CONTENT},
+        cursor = SQLITEDATABASE.query(true, TABLE_NAME, new String[]{KEY_ADDRESS, KEY_CONTENT},
                 KEY_ADDRESS + " LIKE 'DO%'", null, null, null, null, null);
         if (cursor.moveToFirst()) {
-            Log.d("Ritik", "Cursor firsst address: "+cursor.getString((cursor.getColumnIndex(SQLiteHelper.KEY_ADDRESS))));
+            Log.d("Ritik", "Cursor firsst address: " + cursor.getString((cursor.getColumnIndex(SQLiteHelper.KEY_ADDRESS))));
             do {
                 ADDRESS_ArrayList.add(cursor.getString(cursor.getColumnIndex(SQLiteHelper.KEY_ADDRESS)));
 
@@ -218,7 +217,7 @@ public class Devices extends Activity {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     dialog.dismiss();
-                    startActivity(new Intent(Devices.this,MainActivity2.class));
+                    startActivity(new Intent(Devices.this, MainActivity2.class));
                 }
             });
 
@@ -239,7 +238,6 @@ public class Devices extends Activity {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
 
 
             return null;

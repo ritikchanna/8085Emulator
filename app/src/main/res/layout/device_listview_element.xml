@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <EditText
         android:id="@+id/device_address_listview"
@@ -13,21 +12,21 @@
         android:layout_marginBottom="8dp"
         android:layout_marginLeft="0dp"
         android:layout_marginTop="0dp"
+        android:backgroundTint="@color/black_overlay"
         android:capitalize="characters"
         android:ems="10"
         android:enabled="false"
-        android:hint="I07H"
 
+        android:fontFamily="bold"
+        android:hint="I07H"
+        android:inputType="textNoSuggestions|textCapCharacters"
         android:singleLine="true"
+        android:textColor="#f2f5f7"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/device_type_spinner"
         app:layout_constraintLeft_toRightOf="@+id/device_type_spinner"
         app:layout_constraintTop_toTopOf="@+id/device_type_spinner"
-        app:layout_constraintVertical_bias="0.0"
-        android:textColor="#f2f5f7"
-        android:fontFamily="bold"
-        android:textStyle="bold"
-        android:backgroundTint="@color/black_overlay"
-        android:inputType="textNoSuggestions|textCapCharacters"/>
+        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@+id/device_content_listview"
@@ -37,17 +36,17 @@
         android:layout_marginLeft="-16dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="0dp"
+        android:backgroundTint="@color/black_overlay"
         android:capitalize="characters"
         android:ems="10"
-        android:enabled="false"
 
+        android:enabled="false"
+        android:inputType="textNoSuggestions|textCapCharacters"
         android:textColor="#f9fcff"
         app:layout_constraintBottom_toBottomOf="@+id/device_address_listview"
         app:layout_constraintLeft_toRightOf="@+id/device_address_listview"
         app:layout_constraintTop_toTopOf="@+id/device_address_listview"
-        app:layout_constraintVertical_bias="0.0"
-        android:backgroundTint="@color/black_overlay"
-        android:inputType="textNoSuggestions|textCapCharacters"/>
+        app:layout_constraintVertical_bias="0.0" />
 
     <ImageButton
         android:id="@+id/device_delete_listview"
@@ -86,9 +85,9 @@
         android:layout_marginLeft="8dp"
         android:layout_marginTop="6dp"
         android:clickable="false"
-        android:textColor="#f9fcff"
-
         android:prompt="@string/app_name"
+
+        android:textColor="#f9fcff"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

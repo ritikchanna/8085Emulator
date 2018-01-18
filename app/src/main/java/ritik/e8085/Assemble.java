@@ -1,25 +1,21 @@
 package ritik.e8085;
 
-import java.io.IOException;
-import java.util.ArrayList;
-
+import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.database.SQLException;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AbsListView;
 import android.widget.ListView;
-import android.widget.Toast;
-import android.app.Activity;
-import android.database.Cursor;
-import android.database.SQLException;
 
 import com.github.amlcurran.showcaseview.ShowcaseView;
-import com.github.amlcurran.showcaseview.SimpleShowcaseEventListener;
-import com.github.amlcurran.showcaseview.targets.Target;
-import com.github.amlcurran.showcaseview.targets.ViewTarget;
 
-public class Assemble extends Activity {
+import java.io.IOException;
+import java.util.ArrayList;
+
+public class Assemble extends Activity implements AbsListView.OnScrollListener {
     ListView assemble_listview;
     Assemble_adapter assembleAdapter;
     ArrayList<String> ADDRESS_ArrayList = new ArrayList<String>();
@@ -27,31 +23,31 @@ public class Assemble extends Activity {
     InstructionDbHelper instructionDbHelper;
     ShowcaseView sv;
 
-    int counter=0;
+    int counter = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_assemble);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        assemble_listview =(ListView)(findViewById(R.id.listview_assemble));
+        assemble_listview = (ListView) (findViewById(R.id.listview_assemble));
 
 
         Log.d("Ritik", "onCreate: assemble 1");
         String starting_address = getIntent().getStringExtra("address");
-        if(starting_address!=null)
-        if (starting_address.length()!=5)
-               starting_address="2000H";
-        else
-            starting_address=getIntent().getStringExtra("address");
+        if (starting_address != null)
+            if (starting_address.length() != 5)
+                starting_address = "2000H";
+            else
+                starting_address = getIntent().getStringExtra("address");
 
         Log.d("Ritik", "onCreate: assemble 2");
 
 
-        ADDRESS_ArrayList.add(0,starting_address);
-        CONTENT_ArrayList.add(0,"");
+        ADDRESS_ArrayList.add(0, starting_address);
+        CONTENT_ArrayList.add(0, "");
 
-        assembleAdapter=new Assemble_adapter(this,ADDRESS_ArrayList,CONTENT_ArrayList);
+        assembleAdapter = new Assemble_adapter(this, ADDRESS_ArrayList, CONTENT_ArrayList);
 
         assemble_listview.setAdapter(assembleAdapter);
 
@@ -77,8 +73,6 @@ public class Assemble extends Activity {
         instructionDbHelper.close();
 
 
-
-
 //
 //        if(new PrefsHelper().isFirstrun(getApplicationContext())) {
 //            sv = new ShowcaseView.Builder(this)
@@ -100,11 +94,9 @@ public class Assemble extends Activity {
 //        }
 
 
-
-
     }
 
-//    public void nextshowcase(){
+    //    public void nextshowcase(){
 //        Log.d("Ritik", "nextshowcase: ");
 //        switch (counter) {
 //            case 0:
@@ -133,14 +125,30 @@ public class Assemble extends Activity {
 //        counter++;
 //
 //    }
+//TODO bug fixed here
+    @Override
+    public void onScroll(AbsListView view, int firstVisibleItem,
+                         int visibleItemCount, int totalItemCount) {
+        // do nothing
+    }
+
+    @Override
+    public void onScrollStateChanged(AbsListView view, int scrollState) {
+        if (SCROLL_STATE_TOUCH_SCROLL == scrollState) {
+            View currentFocus = getCurrentFocus();
+            if (currentFocus != null) {
+                currentFocus.clearFocus();
+            }
+        }
+    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         try {
-            assembleAdapter.setContent(data.getIntExtra("position",-1),data.getStringExtra("instruction"));
-        }catch (Exception e){
-            Log.d("Ritik", "onActivityResult: "+e.getMessage());
+            assembleAdapter.setContent(data.getIntExtra("position", -1), data.getStringExtra("instruction"));
+        } catch (Exception e) {
+            Log.d("Ritik", "onActivityResult: " + e.getMessage());
         }
     }
 }

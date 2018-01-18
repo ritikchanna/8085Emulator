@@ -19,7 +19,7 @@ import java.util.List;
  * Created by SuperUser on 22-03-2017.
  */
 
-public class DevicesAdapter extends BaseAdapter{
+public class DevicesAdapter extends BaseAdapter {
 
     Context context;
     ArrayList<String> address_lv;
@@ -28,25 +28,18 @@ public class DevicesAdapter extends BaseAdapter{
     SQLiteHelper SQLITEHELPER;
 
 
-
-
-
     public DevicesAdapter(
             Context context2,
             ArrayList<String> address,
             ArrayList<String> content
 
-    )
-    {
+    ) {
 
         this.context = context2;
         this.address_lv = address;
         this.content_lv = content;
-        typeHelper=new TypeHelper();
-        SQLITEHELPER=new SQLiteHelper(context2);
-
-
-
+        typeHelper = new TypeHelper();
+        SQLITEHELPER = new SQLiteHelper(context2);
 
 
     }
@@ -85,13 +78,13 @@ public class DevicesAdapter extends BaseAdapter{
             holder = new DevicesAdapter.Holder();
 
 
-            holder.device_address=(EditText) child.findViewById(R.id.device_address_listview);
-            holder.device_content=(EditText) child.findViewById(R.id.device_content_listview);
-            holder.device_delete=(ImageButton)child.findViewById(R.id.device_delete_listview);
-            holder.device_spinner=(Spinner)child.findViewById(R.id.device_type_spinner);
+            holder.device_address = (EditText) child.findViewById(R.id.device_address_listview);
+            holder.device_content = (EditText) child.findViewById(R.id.device_content_listview);
+            holder.device_delete = (ImageButton) child.findViewById(R.id.device_delete_listview);
+            holder.device_spinner = (Spinner) child.findViewById(R.id.device_type_spinner);
             holder.device_spinner.setAdapter(dataAdapter);
 
-            holder.device_save=(ImageButton)child.findViewById(R.id.device_save_listview);
+            holder.device_save = (ImageButton) child.findViewById(R.id.device_save_listview);
 //            holder.device_delete.setImageResource();
 
             child.setTag(holder);
@@ -102,27 +95,26 @@ public class DevicesAdapter extends BaseAdapter{
         }
 
 
-       try {
-           Log.d("Ritik", "getView: setting element " + address_lv.get(position) + " " + content_lv.get(position));
+        try {
+            Log.d("Ritik", "getView: setting element " + address_lv.get(position) + " " + content_lv.get(position));
 
-if(address_lv.get(position).substring(0,1).equals("S"))
-           holder.device_address.setText(address_lv.get(position));
-           else{
-    holder.device_address.setText(address_lv.get(position).substring((2)));
-           }
-           holder.device_content.setText(content_lv.get(position));
-           holder.device_spinner.setSelection((address_lv.get(position).substring(1, 2).equals("I")) ? 0 : 1);
-               holder.device_spinner.setEnabled(false);
-       }
-       catch (Exception e){
+            if (address_lv.get(position).substring(0, 1).equals("S"))
+                holder.device_address.setText(address_lv.get(position));
+            else {
+                holder.device_address.setText(address_lv.get(position).substring((2)));
+            }
+            holder.device_content.setText(content_lv.get(position));
+            holder.device_spinner.setSelection((address_lv.get(position).substring(1, 2).equals("I")) ? 0 : 1);
+            holder.device_spinner.setEnabled(false);
+        } catch (Exception e) {
 
-       }
-        if(address_lv.get(position).substring(0, 1).equals("S"))
+        }
+        if (address_lv.get(position).substring(0, 1).equals("S"))
             holder.device_spinner.setVisibility(View.INVISIBLE);
 
 //        if(address_lv.get(position).equals("Add"))
 //            holder.device_address.setEnabled(true);
-        if(address_lv.get(position).contains("S"))
+        if (address_lv.get(position).contains("S"))
             holder.device_delete.setVisibility(View.INVISIBLE);
 
 
@@ -141,13 +133,13 @@ if(address_lv.get(position).substring(0,1).equals("S"))
             public void onClick(View view) {
                 Log.d("Ritik", "Devices: delete button pressed");
 
-                    SQLITEHELPER.delete_memory(address_lv.get(position));
+                SQLITEHELPER.delete_memory(address_lv.get(position));
                 Log.d("Ritik", "Devices: delete button pressed1");
-                    address_lv.remove(position);
+                address_lv.remove(position);
                 Log.d("Ritik", "Devices: delete button pressed2");
-                    content_lv.remove(position);
+                content_lv.remove(position);
                 Log.d("Ritik", "Devices: delete button pressed3");
-                    notifyDataSetChanged();
+                notifyDataSetChanged();
 
             }
         });
@@ -155,16 +147,15 @@ if(address_lv.get(position).substring(0,1).equals("S"))
             @Override
             public void onClick(View view) {
 
-                if(holder.device_content.isEnabled()){
+                if (holder.device_content.isEnabled()) {
 
 
-
-                    if(address_lv.get(position).substring(0,1).equals("S")) {
+                    if (address_lv.get(position).substring(0, 1).equals("S")) {
                         if ((holder.device_content.getText().toString().matches("[01]*"))) {
                             SQLITEHELPER.save_memory(holder.device_address.getText().toString().toString().toUpperCase(), holder.device_content.getText().toString().toUpperCase());
                             holder.device_content.setEnabled(false);
                             content_lv.set(position, holder.device_content.getText().toString().toUpperCase());
-                            address_lv.set(position,holder.device_address.getText().toString().toUpperCase());
+                            address_lv.set(position, holder.device_address.getText().toString().toUpperCase());
                             notifyDataSetChanged();
                             holder.device_save.setImageResource(android.R.drawable.ic_menu_edit);
                         } else
@@ -172,44 +163,40 @@ if(address_lv.get(position).substring(0,1).equals("S"))
                     }
 
 
+                    if (!address_lv.get(position).substring(0, 1).equals("S")) {
 
-                    if(!address_lv.get(position).substring(0,1).equals("S")) {
-
-                       if(holder.device_spinner.getSelectedItem().toString().substring(0,1).equals("I")||holder.device_spinner.getSelectedItem().toString().substring(0,1).equals("O"))
-                       {
-                           Log.d("Ritik", "save: spinner value is "+holder.device_spinner.getSelectedItem().toString());
-                           if (typeHelper.isHex(holder.device_content.getText().toString(), 2)) {
-                            SQLITEHELPER.save_memory("D"+holder.device_spinner.getSelectedItem().toString().substring(0,1)+holder.device_address.getText().toString(), holder.device_content.getText().toString().toUpperCase());
-                            holder.device_content.setEnabled(false);
-                               holder.device_address.setEnabled(false);
-                               holder.device_spinner.setEnabled(false);
-                            content_lv.set(position, holder.device_content.getText().toString().toUpperCase());
-                            address_lv.set(position,"D"+holder.device_spinner.getSelectedItem().toString().substring(0,1)+holder.device_address.getText().toString().toUpperCase());
-                            notifyDataSetChanged();
-                            holder.device_save.setImageResource(android.R.drawable.ic_menu_edit);
+                        if (holder.device_spinner.getSelectedItem().toString().substring(0, 1).equals("I") || holder.device_spinner.getSelectedItem().toString().substring(0, 1).equals("O")) {
+                            Log.d("Ritik", "save: spinner value is " + holder.device_spinner.getSelectedItem().toString());
+                            if (typeHelper.isHex(holder.device_content.getText().toString(), 2)) {
+                                SQLITEHELPER.save_memory("D" + holder.device_spinner.getSelectedItem().toString().substring(0, 1) + holder.device_address.getText().toString(), holder.device_content.getText().toString().toUpperCase());
+                                holder.device_content.setEnabled(false);
+                                holder.device_address.setEnabled(false);
+                                holder.device_spinner.setEnabled(false);
+                                content_lv.set(position, holder.device_content.getText().toString().toUpperCase());
+                                address_lv.set(position, "D" + holder.device_spinner.getSelectedItem().toString().substring(0, 1) + holder.device_address.getText().toString().toUpperCase());
+                                notifyDataSetChanged();
+                                holder.device_save.setImageResource(android.R.drawable.ic_menu_edit);
+                            } else
+                                holder.device_content.setError("Hexadecimal only");
                         } else
-                            holder.device_content.setError("Hexadecimal only");
-                       }
-                        else
-                           ((TextView)holder.device_spinner.getSelectedView()).setError("");
+                            ((TextView) holder.device_spinner.getSelectedView()).setError("");
 
                     }
 
 
-                }
-                else {
+                } else {
                     holder.device_content.setEnabled(true);
                     holder.device_content.requestFocus();
-                    if(!address_lv.get(position).substring(0,1).equals("S"))
-                     holder.device_content.setSelection(2);
-                    if(address_lv.get(position).substring(0,1).equals("D")){
+                    if (!address_lv.get(position).substring(0, 1).equals("S"))
+                        holder.device_content.setSelection(2);
+                    if (address_lv.get(position).substring(0, 1).equals("D")) {
                         holder.device_spinner.setEnabled(true);
                         holder.device_address.setEnabled(true);
-                        Log.d("Ritik", "onClick: making editable");}
+                        Log.d("Ritik", "onClick: making editable");
+                    }
                     holder.device_save.setImageResource(android.R.drawable.ic_menu_save);
 
                 }
-
 
 
             }
@@ -221,11 +208,10 @@ if(address_lv.get(position).substring(0,1).equals("S"))
     public class Holder {
         EditText device_content;
         EditText device_address;
-        ImageButton device_delete,device_save;
+        ImageButton device_delete, device_save;
         Spinner device_spinner;
 
     }
-
 
 
 }

@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/textview_address_lv"
@@ -13,13 +12,13 @@
         android:layout_marginLeft="94dp"
         android:layout_marginStart="50dp"
         android:layout_marginTop="7dp"
+        android:fontFamily="bold"
         android:text="0000H"
         android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         android:textColor="#f2f5f7"
-        android:fontFamily="bold"
-        android:textStyle="bold"/>
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/edittext_content_lv"
@@ -28,30 +27,30 @@
         android:layout_marginBottom="0dp"
         android:layout_marginLeft="30dp"
         android:layout_marginTop="0dp"
+        android:backgroundTint="@color/black_overlay"
         android:capitalize="characters"
-        android:enabled="false"
 
+        android:enabled="false"
+        android:inputType="textNoSuggestions|textCapCharacters"
         android:text="FFH"
         android:textAllCaps="true"
         android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
+        android:textColor="#f9fcff"
         app:layout_constraintBottom_toBottomOf="@+id/textview_address_lv"
         app:layout_constraintLeft_toRightOf="@+id/textview_address_lv"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        android:textColor="#f9fcff"
-        android:backgroundTint="@color/black_overlay"
-        android:inputType="textNoSuggestions|textCapCharacters"/>
+        app:layout_constraintVertical_bias="0.0" />
 
     <ImageButton
         android:id="@+id/imagebuuton_edit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="14dp"
         android:layout_marginLeft="8dp"
+        android:background="@android:color/transparent"
         android:src="@android:drawable/ic_menu_edit"
         app:layout_constraintBottom_toBottomOf="@+id/edittext_content_lv"
         app:layout_constraintHorizontal_bias="0.087"
         app:layout_constraintLeft_toRightOf="@+id/edittext_content_lv"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginBottom="14dp"
-        android:background="@android:color/transparent"/>
+        app:layout_constraintRight_toRightOf="parent" />
 </android.support.constraint.ConstraintLayout>

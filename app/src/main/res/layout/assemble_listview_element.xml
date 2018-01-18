@@ -2,41 +2,41 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/textview_address_lv_assemble"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginStart="5dp"
+        android:fontFamily="bold"
         android:text="0000H"
         android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginStart="5dp"
-        tools:layout_editor_absoluteY="16dp"
-        android:layout_marginLeft="5dp"
         android:textColor="#f2f5f7"
-        android:fontFamily="bold"
-        android:textStyle="bold"/>
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="parent"
+        tools:layout_editor_absoluteY="16dp" />
 
     <EditText
         android:id="@+id/edittext_content_lv_assemble"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="0dp"
+        android:backgroundTint="@color/black_overlay"
         android:capitalize="characters"
-        android:hint="Instruction"
 
+        android:hint="Instruction"
+        android:inputType="textNoSuggestions|textCapCharacters"
         android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
+        android:textColor="#f9fcff"
+        android:textColorHint="#88dbdee1"
         app:layout_constraintBottom_toBottomOf="@+id/textview_address_lv_assemble"
         app:layout_constraintLeft_toRightOf="@+id/textview_address_lv_assemble"
         app:layout_constraintTop_toTopOf="@+id/textview_address_lv_assemble"
-        app:layout_constraintVertical_bias="0.428"
-        android:textColor="#f9fcff"
-        android:textColorHint="#88dbdee1"
-        android:backgroundTint="@color/black_overlay"
-        android:inputType="textNoSuggestions|textCapCharacters"/>
+        app:layout_constraintVertical_bias="0.428" />
 
     <ImageButton
         android:id="@+id/button_help_lv_assemble"
@@ -44,26 +44,27 @@
         android:layout_height="38dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="8dp"
+        android:background="@android:color/transparent"
         android:elevation="4dp"
         android:src="@android:drawable/ic_menu_help"
         app:layout_constraintBottom_toBottomOf="@+id/edittext_content_lv_assemble"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toRightOf="@+id/edittext_content_lv_assemble"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/edittext_content_lv_assemble"
-        android:background="@android:color/transparent"/>
+        app:layout_constraintTop_toTopOf="@+id/edittext_content_lv_assemble" />
+
     <ImageButton
         android:id="@+id/button_done_lv_assemble"
         android:layout_width="53dp"
         android:layout_height="38dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="8dp"
+        android:background="@android:color/transparent"
         android:elevation="4dp"
         android:src="@android:drawable/ic_menu_send"
         app:layout_constraintBottom_toBottomOf="@+id/edittext_content_lv_assemble"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toRightOf="@+id/button_help_lv_assemble"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/edittext_content_lv_assemble"
-        android:background="@android:color/transparent"/>
+        app:layout_constraintTop_toTopOf="@+id/edittext_content_lv_assemble" />
 </android.support.constraint.ConstraintLayout>

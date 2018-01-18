@@ -4,23 +4,14 @@ package ritik.e8085;
  * Created by SuperUser on 12-03-2017.
  */
 
-import java.io.IOException;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.SQLException;
 import android.graphics.Color;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,8 +27,6 @@ public class Grid extends BaseAdapter {
     PrefsHelper prefsHelper;
 
 
-
-
     public Grid(
             Context context,
             String[] colors,
@@ -45,15 +34,14 @@ public class Grid extends BaseAdapter {
             String[] names
 
 
-    )
-    {
+    ) {
 
         this.context = context;
         this.colors = colors;
         this.edittext_enable = edittext_enable;
-        this.names=names;
-        prefsHelper=new PrefsHelper();
-        typeHelper=new TypeHelper();
+        this.names = names;
+        prefsHelper = new PrefsHelper();
+        typeHelper = new TypeHelper();
 
     }
 
@@ -72,103 +60,95 @@ public class Grid extends BaseAdapter {
         return 0;
     }
 
-    public View getView(final int position,View child, final ViewGroup parent) {
+    public View getView(final int position, View child, final ViewGroup parent) {
 
         final Holder holder;
 
         LayoutInflater layoutInflater;
 
 //        if (child == null) {
-            layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            child = layoutInflater.inflate(R.layout.grid_layout, null);
+        layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        child = layoutInflater.inflate(R.layout.grid_layout, null);
 
-            holder = new Holder();
+        holder = new Holder();
 
-            holder.name = (TextView) child.findViewById(R.id.textView5);
-            holder.data = (EditText) child.findViewById(R.id.editText);
+        holder.name = (TextView) child.findViewById(R.id.textView5);
+        holder.data = (EditText) child.findViewById(R.id.editText);
 
 
-
-            child.setTag(holder);
+        child.setTag(holder);
 
 //        } else {
 //
 //            holder = (Holder) child.getTag();
 //        }
-        try{
+        try {
             holder.name.setText(names[position].toUpperCase());
-            if(edittext_enable[position]==0)
+            if (edittext_enable[position] == 0)
                 holder.data.setVisibility(View.INVISIBLE);
 
 
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
         }
         child.setBackgroundColor(Color.parseColor(colors[position]));
-        if(names[position].equals("Memory Mode")){
+        if (names[position].equals("Memory Mode")) {
             holder.data.setHint("0000H");
-        }
-        else if(names[position].equals("Assemble Mode")){
+        } else if (names[position].equals("Assemble Mode")) {
             holder.data.setHint("2000H");
-        }
-        else{
-            holder.data.setHint(prefsHelper.getregister(context,"pc"));
+        } else {
+            holder.data.setHint(prefsHelper.getregister(context, "pc"));
         }
 
 
         child.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                switch(names[position]){
+                switch (names[position]) {
                     case "Register Mode":
                         context.startActivity(new Intent(context, Register.class));
                         break;
                     case "Memory Mode":
-                        if(typeHelper.isHex(holder.data.getText().toString().toUpperCase(),4)||holder.data.getText().toString().isEmpty()) {
+                        if (typeHelper.isHex(holder.data.getText().toString().toUpperCase(), 4) || holder.data.getText().toString().isEmpty()) {
                             Intent i = new Intent(context, Memory.class);
                             i.putExtra("address", holder.data.getText().toString().toUpperCase());
                             context.startActivity(i);
-                        }
-                        else
+                        } else
                             holder.data.setError("Invalid Address");
                         break;
                     case "Assemble Mode":
-                        if(typeHelper.isHex(holder.data.getText().toString().toUpperCase(),4)||holder.data.getText().toString().isEmpty()) {
+                        if (typeHelper.isHex(holder.data.getText().toString().toUpperCase(), 4) || holder.data.getText().toString().isEmpty()) {
                             Intent ia = new Intent(context, Assemble.class);
                             ia.putExtra("address", holder.data.getText().toString().toUpperCase());
                             context.startActivity(ia);
-                        }
-                        else
+                        } else
                             holder.data.setError("Invalid Address");
                         break;
                     case "Single Step Execution":
-                        if(typeHelper.isHex(holder.data.getText().toString().toUpperCase(),4)||holder.data.getText().toString().isEmpty()) {
+                        if (typeHelper.isHex(holder.data.getText().toString().toUpperCase(), 4) || holder.data.getText().toString().isEmpty()) {
                             Intent is = new Intent(context, Singlestep.class);
                             is.putExtra("address", holder.data.getText().toString().toUpperCase());
                             context.startActivity(is);
-                        }
-                        else
+                        } else
                             holder.data.setError("Invalid Address");
                         break;
                     case "One Go Execution":
-                        if(typeHelper.isHex(holder.data.getText().toString().toUpperCase(),4)||holder.data.getText().toString().isEmpty()) {
+                        if (typeHelper.isHex(holder.data.getText().toString().toUpperCase(), 4) || holder.data.getText().toString().isEmpty()) {
                             Intent io = new Intent(context, Onego.class);
                             io.putExtra("address", holder.data.getText().toString().toUpperCase());
                             context.startActivity(io);
-                        }
-                        else
+                        } else
                             holder.data.setError("Invalid Address");
                         break;
                     case "Devices (Beta)":
                         context.startActivity(new Intent(context, Devices.class));
                         break;
                     case "Reset":
-                        prefsHelper.saveregister(context,prefsHelper.default_values);
-                        Toast.makeText(context,"Device Reset Done",Toast.LENGTH_SHORT).show();
+                        prefsHelper.saveregister(context, prefsHelper.default_values);
+                        Toast.makeText(context, "Device Reset Done", Toast.LENGTH_SHORT).show();
                         break;
 
                     case "About":
-                        context.startActivity(new Intent(context,About.class));
+                        context.startActivity(new Intent(context, About.class));
                         break;
 
                 }
@@ -248,13 +228,6 @@ public class Grid extends BaseAdapter {
 //        });
 
 
-
-
-
-
-
-
-
         return child;
     }
 //    public void setContent(int position,String Content){
@@ -273,7 +246,6 @@ public class Grid extends BaseAdapter {
 
 
     }
-
 
 
 }
