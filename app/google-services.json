@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "577180352503",
+    "firebase_url": "https://leotik-8085-emulator.firebaseio.com",
+    "project_id": "leotik-8085-emulator",
+    "storage_bucket": "leotik-8085-emulator.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:577180352503:android:86a3bd0cf7453c3f",
+        "android_client_info": {
+          "package_name": "ritik.e8085"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "577180352503-as3d4b22rlu89tols93cieh8jgqhl3ic.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDBbGD2Evcj4sVUEKaKMUpidi8zAg5NPtE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

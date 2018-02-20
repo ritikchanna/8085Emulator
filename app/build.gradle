@@ -32,4 +32,6 @@ dependencies {
     compile 'in.srain.cube:grid-view-with-header-footer:1.0.12'
     compile 'com.android.support:support-v4:25.3.1'
     testCompile 'junit:junit:4.12'
+    compile 'com.google.firebase:firebase-core:11.8.0'
 }
+apply plugin: 'com.google.gms.google-services'
