@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "577180352503-pktgj360aulsei3gpaedbpqdd46id9ds.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ritik.e8085",
+            "certificate_hash": "141356ea42d4a4eebaef7e16935109b7b55bc808"
+          }
+        },
+        {
           "client_id": "577180352503-as3d4b22rlu89tols93cieh8jgqhl3ic.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -29,8 +37,13 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "577180352503-as3d4b22rlu89tols93cieh8jgqhl3ic.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
           "status": 2

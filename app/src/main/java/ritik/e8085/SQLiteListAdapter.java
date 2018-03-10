@@ -5,6 +5,7 @@ package ritik.e8085;
  */
 
 import android.content.Context;
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -168,12 +169,15 @@ public class SQLiteListAdapter extends BaseAdapter {
                         holder.edittextcontent.setError("Invalid Contents");
                 } else {
                     holder.edittextcontent.setEnabled(true);
+                    holder.edittextcontent.setRawInputType(InputType.TYPE_CLASS_TEXT);
+                    holder.edittextcontent.setTextIsSelectable(true);
                     holder.edittextcontent.requestFocus();
+
+
                     isediting.set(position, true);
 
                     InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
-                    imm.showSoftInput(holder.edittextcontent,
-                            InputMethodManager.SHOW_IMPLICIT);
+                    imm.showSoftInput(holder.edittextcontent, InputMethodManager.SHOW_IMPLICIT);
 
                     holder.imagebutton.setImageResource(android.R.drawable.ic_menu_save);
 

@@ -2,6 +2,8 @@ package ritik.e8085;
 
 import android.util.Log;
 
+import com.google.firebase.crash.FirebaseCrash;
+
 /**
  * Created by SuperUser on 09-03-2017.
  */
@@ -93,8 +95,13 @@ public class TypeHelper {
 
     public int[] getFlagadd(String hex1, String hex2) {
         int[] flags = {0, 0, 0, 0, 0, 0, 0, 0};
-        String hex1_t = hex1.substring(0, hex1.length() - 1);
-        String hex2_t = hex2.substring(0, hex2.length() - 1);
+        String hex1_t = hex1.trim().substring(0, hex1.length() - 1);
+        String hex2_t = hex2.trim().substring(0, hex2.length() - 1);
+
+        if (!(isHex(hex1, 2) && isHex(hex2, 2)))
+            FirebaseCrash.log("Invalid Hex in TypeHelper.getFlagadd : Hex1: " + hex1 + " Hex2: " + hex2);
+
+
         int full_sum = Integer.parseInt(hex1_t, 16) + Integer.parseInt(hex2_t, 16);
         hex1_t = hex1_t.substring(1);
         hex2_t = hex2_t.substring(1);

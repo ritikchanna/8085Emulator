@@ -72,6 +72,15 @@ public class Memory extends Activity implements AbsListView.OnScrollListener {
     }
 
     @Override
+    public void onBackPressed() {
+        View currentFocus = getCurrentFocus();
+        if (currentFocus != null) {
+            currentFocus.clearFocus();
+        }
+        super.onBackPressed();
+    }
+
+    @Override
     protected void onResume() {
 
         //ShowSQLiteDBdata("0000G") ;

@@ -5,6 +5,8 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.util.Log;
 
+import com.google.firebase.crash.FirebaseCrash;
+
 import java.io.IOException;
 
 /**
@@ -1947,6 +1949,9 @@ public class Opcode {
     public String getinstruction(String address) {
         String opcode = sqLiteHelper.read_memory(address);
         Cursor result = instructionDbHelper.getsizeopcode(opcode);
+        if ((result.getColumnCount() < 2 || result.isNull(0) || result.isNull(1)))
+            FirebaseCrash.log("Invalid Cursor in Opcode:getinstruction");
+
         String instruction = result.getString(0);
         int size = result.getInt(1);
 
