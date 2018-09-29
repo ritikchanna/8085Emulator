@@ -6,6 +6,7 @@ package ritik.e8085;
 
 import android.content.Context;
 import android.text.InputType;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,7 +28,7 @@ public class SQLiteListAdapter extends BaseAdapter {
     SQLiteHelper SQLITEHELPER;
 
     Memory memory;
-
+int position;
 
     public SQLiteListAdapter(
             Context context2,
@@ -42,7 +43,7 @@ public class SQLiteListAdapter extends BaseAdapter {
         typeHelper = new TypeHelper();
         SQLITEHELPER = new SQLiteHelper(context2);
         memory = new Memory();
-        this.isediting = new ArrayList<>(65536);
+        this.isediting = new ArrayList<>(65537);
 
 
     }
@@ -62,8 +63,12 @@ public class SQLiteListAdapter extends BaseAdapter {
         return 0;
     }
 
-    public View getView(final int position, View child, ViewGroup parent) {
-
+    public View getView(final int pos, View child, ViewGroup parent) {
+        if(pos<65535)
+       position = pos;
+        else{
+            position = pos % 65535;
+        }
         final Holder holder;
 
         LayoutInflater layoutInflater;
@@ -97,6 +102,7 @@ public class SQLiteListAdapter extends BaseAdapter {
             }
         }
         holder.textviewaddress.setText(new String(new char[5 - address_lv.get(position).length()]).replace('\0', '0') + address_lv.get(position));
+        Log.d("Ritik", "position is: "+position+"    "+pos);
         holder.edittextcontent.setText(new String(new char[3 - content_lv.get(position).length()]).replace('\0', '0') + content_lv.get(position));
         child.setOnClickListener(new View.OnClickListener() {
             @Override

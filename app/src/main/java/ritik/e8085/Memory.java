@@ -2,6 +2,7 @@ package ritik.e8085;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
@@ -11,7 +12,9 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AbsListView;
+import android.widget.EditText;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -38,6 +41,19 @@ public class Memory extends Activity implements AbsListView.OnScrollListener {
         LISTVIEW = (ListView) findViewById(R.id.listview_memory_locations);
         ListAdapter = new SQLiteListAdapter(getApplicationContext(), ADDRESS_ArrayList, CONTENT_ArrayList);
         LISTVIEW.setAdapter(ListAdapter);
+        LISTVIEW.setRecyclerListener(new AbsListView.RecyclerListener() {
+            @Override
+            public void onMovedToScrapHeap(View view) {
+                if ( view.hasFocus()){
+                    view.clearFocus(); //we can put it inside the second if as well, but it makes sense to do it to all scraped views
+                    //Optional: also hide keyboard in that case
+                    if ( view instanceof EditText) {
+                        InputMethodManager imm = (InputMethodManager) view.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+                    }
+                }
+            }
+        });
         SQLITEHELPER = new SQLiteHelper(this);
 
         typehelper = new TypeHelper();

@@ -4,13 +4,13 @@ apply plugin: 'io.fabric'
 android {
 
     compileSdkVersion 25
-    buildToolsVersion '26.0.2'
+    buildToolsVersion '27.0.3'
     defaultConfig {
         applicationId "ritik.e8085"
         minSdkVersion 17
         targetSdkVersion 25
-        versionCode 11
-        versionName "1.6"
+        versionCode 12
+        versionName "1.7"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -27,8 +27,8 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:25.0.0'
-    compile 'com.android.support.constraint:constraint-layout:1.0.0-beta3'
+    compile 'com.android.support:appcompat-v7:25.3.1'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.github.amlcurran.showcaseview:library:5.4.3'
     compile 'com.readystatesoftware.sqliteasset:sqliteassethelper:+'
     compile 'in.srain.cube:grid-view-with-header-footer:1.0.12'
