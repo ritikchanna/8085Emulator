@@ -2,13 +2,7 @@
 ======
 An easy to use and fully functional 8085 Microprocessor Emulator for Android. Now test those 8085 programs right on your Android Device without any need of extra hardware.
 
-
 <a href="https://play.google.com/store/apps/details?id=ritik.e8085"><img src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png" height="60"></a>
-
-
-
-
-
 
 Features
 ------------
