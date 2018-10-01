@@ -21,7 +21,7 @@ public class Grid extends BaseAdapter {
     String[] colors;
     int[] edittext_enable;
     String[] names;
-    TypeHelper typeHelper;
+    private TypeHelper typeHelper;
     InstructionDbHelper instructionDbHelper;
     SQLiteHelper memoryhelper;
     PrefsHelper prefsHelper;
@@ -72,8 +72,8 @@ public class Grid extends BaseAdapter {
 
         holder = new Holder();
 
-        holder.name = (TextView) child.findViewById(R.id.textView5);
-        holder.data = (EditText) child.findViewById(R.id.editText);
+        holder.name = child.findViewById(R.id.textView5);
+        holder.data = child.findViewById(R.id.editText);
 
 
         child.setTag(holder);

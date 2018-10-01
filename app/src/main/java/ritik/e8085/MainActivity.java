@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
             "#4f5151",
             "#2d2f30"
     };
-    String[] names = {
+    private String[] names = {
 
             "Register Mode",
             "Memory Mode",
@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setCustomView(R.layout.app_header);
         adapter = new Grid(MainActivity.this, gridColor, edit, names);
         LayoutInflater layoutInflater = LayoutInflater.from(this);
-        gridView = (GridView) findViewById(R.id.gridview);
+        gridView = findViewById(R.id.gridview);
         View headerView = layoutInflater.inflate(R.layout.app_header, null);
         //gridView.addHeaderView(headerView);
 

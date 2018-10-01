@@ -78,13 +78,13 @@ public class DevicesAdapter extends BaseAdapter {
             holder = new DevicesAdapter.Holder();
 
 
-            holder.device_address = (EditText) child.findViewById(R.id.device_address_listview);
-            holder.device_content = (EditText) child.findViewById(R.id.device_content_listview);
-            holder.device_delete = (ImageButton) child.findViewById(R.id.device_delete_listview);
-            holder.device_spinner = (Spinner) child.findViewById(R.id.device_type_spinner);
+            holder.device_address = child.findViewById(R.id.device_address_listview);
+            holder.device_content = child.findViewById(R.id.device_content_listview);
+            holder.device_delete = child.findViewById(R.id.device_delete_listview);
+            holder.device_spinner = child.findViewById(R.id.device_type_spinner);
             holder.device_spinner.setAdapter(dataAdapter);
 
-            holder.device_save = (ImageButton) child.findViewById(R.id.device_save_listview);
+            holder.device_save = child.findViewById(R.id.device_save_listview);
 //            holder.device_delete.setImageResource();
 
             child.setTag(holder);
@@ -208,7 +208,7 @@ public class DevicesAdapter extends BaseAdapter {
     public class Holder {
         EditText device_content;
         EditText device_address;
-        ImageButton device_delete, device_save;
+        private ImageButton device_delete, device_save;
         Spinner device_spinner;
 
     }

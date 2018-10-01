@@ -29,7 +29,7 @@ public class Assemble_adapter extends BaseAdapter {
     ArrayList<Integer> size_instruction;
     TypeHelper typeHelper;
     InstructionDbHelper instructionDbHelper;
-    SQLiteHelper memoryhelper;
+    private SQLiteHelper memoryhelper;
 
 
     public Assemble_adapter(
@@ -94,10 +94,10 @@ public class Assemble_adapter extends BaseAdapter {
 
             holder = new Holder();
 
-            holder.textviewaddress = (TextView) child.findViewById(R.id.textview_address_lv_assemble);
-            holder.edittextcontent = (EditText) child.findViewById(R.id.edittext_content_lv_assemble);
-            holder.buttondone = (ImageButton) child.findViewById(R.id.button_done_lv_assemble);
-            holder.buttonhelp = (ImageButton) child.findViewById(R.id.button_help_lv_assemble);
+            holder.textviewaddress = child.findViewById(R.id.textview_address_lv_assemble);
+            holder.edittextcontent = child.findViewById(R.id.edittext_content_lv_assemble);
+            holder.buttondone = child.findViewById(R.id.button_done_lv_assemble);
+            holder.buttonhelp = child.findViewById(R.id.button_help_lv_assemble);
 
 
             child.setTag(holder);

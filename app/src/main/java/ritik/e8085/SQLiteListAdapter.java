@@ -24,11 +24,11 @@ public class SQLiteListAdapter extends BaseAdapter {
     ArrayList<String> address_lv;
     ArrayList<String> content_lv;
     ArrayList<Boolean> isediting;
-    TypeHelper typeHelper;
+    private TypeHelper typeHelper;
     SQLiteHelper SQLITEHELPER;
 
     Memory memory;
-int position;
+    private int position;
 
     public SQLiteListAdapter(
             Context context2,
@@ -79,9 +79,9 @@ int position;
 
             holder = new Holder();
 
-            holder.textviewaddress = (TextView) child.findViewById(R.id.textview_address_lv);
-            holder.edittextcontent = (EditText) child.findViewById(R.id.edittext_content_lv);
-            holder.imagebutton = (ImageButton) child.findViewById(R.id.imagebuuton_edit);
+            holder.textviewaddress = child.findViewById(R.id.textview_address_lv);
+            holder.edittextcontent = child.findViewById(R.id.edittext_content_lv);
+            holder.imagebutton = child.findViewById(R.id.imagebuuton_edit);
 
             isediting.add(position, false);
             child.setTag(holder);

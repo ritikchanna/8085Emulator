@@ -19,7 +19,7 @@ public class SQLiteHelper extends SQLiteAssetHelper {
     public static final String TABLE_NAME = "memory";
     public static final String KEY_ADDRESS = "address";
     public static final String KEY_CONTENT = "content";
-    static String DATABASE_NAME = "re8085";
+    private static String DATABASE_NAME = "re8085";
     Context context;
     private SQLiteDatabase db;
 

@@ -16,7 +16,7 @@ import java.io.IOException;
 public class Opcode {
     InstructionDbHelper instructionDbHelper;
     SQLiteHelper sqLiteHelper;
-    Context context;
+    private Context context;
     TypeHelper typeHelper;
     PrefsHelper prefshelper;
 
@@ -51,7 +51,9 @@ public class Opcode {
 
     public int execute() {
 
-        String flags = "00000000", temp1, temp2;
+        String flags = "00000000";
+        String temp1;
+        String temp2;
         int[] flags_new, flags_new2;
         String pc_address = prefshelper.getregister(context, "pc");
         String opcode = sqLiteHelper.read_memory(pc_address);

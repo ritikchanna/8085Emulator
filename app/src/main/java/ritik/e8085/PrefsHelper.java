@@ -75,23 +75,20 @@ public class PrefsHelper {
 
     public boolean isFirstrun(Context context) {
         SharedPreferences sharedPreferences;
-        SharedPreferences.Editor editor;
         sharedPreferences = context.getSharedPreferences("8085_Registers", Context.MODE_MULTI_PROCESS);
         return sharedPreferences.getBoolean("firstrun", true);
     }
 
     public void firstrun(Context context) {
         SharedPreferences sharedPreferences;
-        SharedPreferences.Editor editor;
         sharedPreferences = context.getSharedPreferences("8085_Registers", Context.MODE_MULTI_PROCESS);
-        sharedPreferences.edit().putBoolean("firstrun", false).commit();
+        sharedPreferences.edit().putBoolean("firstrun", false).apply();
     }
 
     public void makefirstrun(Context context) {
         SharedPreferences sharedPreferences;
-        SharedPreferences.Editor editor;
         sharedPreferences = context.getSharedPreferences("8085_Registers", Context.MODE_MULTI_PROCESS);
-        sharedPreferences.edit().putBoolean("firstrun", true).commit();
+        sharedPreferences.edit().putBoolean("firstrun", true).apply();
     }
 
 }

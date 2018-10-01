@@ -16,11 +16,11 @@ import com.github.amlcurran.showcaseview.targets.ViewTarget;
 
 public class Register extends AppCompatActivity implements View.OnClickListener {
     public static boolean flag = false;
-    PrefsHelper prefsHelper = new PrefsHelper();
-    TypeHelper typeHelper = new TypeHelper();
-    TextView textView_reg_a, textView_reg_f, textView_reg_b, textView_reg_c, textView_reg_d, textView_reg_e, textView_reg_h, textView_reg_l, textView_reg_pc, textView_reg_sp;
+    private PrefsHelper prefsHelper = new PrefsHelper();
+    private TypeHelper typeHelper = new TypeHelper();
+    private TextView textView_reg_a, textView_reg_f, textView_reg_b, textView_reg_c, textView_reg_d, textView_reg_e, textView_reg_h, textView_reg_l, textView_reg_pc, textView_reg_sp;
     EditText editText_reg_a_data, editText_reg_f_data, editText_reg_b_data, editText_reg_c_data, editText_reg_d_data, editText_reg_e_data, editText_reg_h_data, editText_reg_l_data, editText_reg_pc_data, editText_reg_sp_data;
-    ImageButton imageButton_reg_a, imageButton_reg_b, imageButton_reg_c, imageButton_reg_d, imageButton_reg_e, imageButton_reg_f, imageButton_reg_h, imageButton_reg_l, imageButton_reg_pc, imageButton_reg_sp;
+    private ImageButton imageButton_reg_a, imageButton_reg_b, imageButton_reg_c, imageButton_reg_d, imageButton_reg_e, imageButton_reg_f, imageButton_reg_h, imageButton_reg_l, imageButton_reg_pc, imageButton_reg_sp;
     ShowcaseView sv;
     Target viewTarget;
     int counter;
@@ -33,27 +33,113 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
         setContentView(R.layout.activity_register);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         getSupportActionBar().hide();
-        textView_reg_a = (TextView) (findViewById(R.id.textview_reg_a));
-        textView_reg_f = (TextView) (findViewById(R.id.textview_reg_f));
-        textView_reg_b = (TextView) (findViewById(R.id.textview_reg_b));
-        textView_reg_c = (TextView) (findViewById(R.id.textview_reg_c));
-        textView_reg_d = (TextView) (findViewById(R.id.textview_reg_d));
-        textView_reg_e = (TextView) (findViewById(R.id.textview_reg_e));
-        textView_reg_h = (TextView) (findViewById(R.id.textview_reg_h));
-        textView_reg_l = (TextView) (findViewById(R.id.textview_reg_l));
-        textView_reg_pc = (TextView) (findViewById(R.id.textview_reg_pc));
-        textView_reg_sp = (TextView) (findViewById(R.id.textview_reg_sp));
+        intialize();
+        onclicks();
 
-        editText_reg_a_data = (EditText) (findViewById(R.id.edittext_reg_a_data));
-        editText_reg_f_data = (EditText) (findViewById(R.id.edittext_reg_f_data));
-        editText_reg_b_data = (EditText) (findViewById(R.id.edittext_reg_b_data));
-        editText_reg_c_data = (EditText) (findViewById(R.id.edittext_reg_c_data));
-        editText_reg_d_data = (EditText) (findViewById(R.id.edittext_reg_d_data));
-        editText_reg_e_data = (EditText) (findViewById(R.id.edittext_reg_e_data));
-        editText_reg_h_data = (EditText) (findViewById(R.id.edittext_reg_h_data));
-        editText_reg_l_data = (EditText) (findViewById(R.id.edittext_reg_l_data));
-        editText_reg_pc_data = (EditText) (findViewById(R.id.edittext_reg_pc_data));
-        editText_reg_sp_data = (EditText) (findViewById(R.id.edittext_reg_sp_data));
+
+//        if(prefsHelper.isFirstrun(getApplicationContext())) {
+//        sv=new ShowcaseView.Builder(this)
+//                .setTarget(Target.NONE)
+//                .setContentTitle("Register Mode")
+//                .setContentText("This screen shows register values of 8085")
+//                .setStyle(R.style.CustomShowcaseTheme3)
+//                .setOnClickListener(
+//                        new View.OnClickListener() {
+//                            @Override
+//                            public void onClick(View view) {
+//                                nextshowcase();
+//                            }
+//                        }
+//
+//                )
+//                .build();
+//        sv.show();
+//
+//        }
+
+
+    }
+//    public void nextshowcase(){
+//        Log.d("Ritik", "nextshowcase: ");
+//        switch (counter) {
+//            case 0:
+//                sv.setShowcase(new ViewTarget(textView_reg_c),true);
+//                sv.setContentTitle("Change Radix of register");
+//                sv.setContentText("Tap on register name to change the radix of the register");
+//                break;
+//            case 1:
+//                sv.setShowcase(new ViewTarget(textView_reg_h), true);
+//                sv.setContentTitle("Edit value of register");
+//                sv.setContentText("Long press on register name to edit it value . Make sure you input a hexadecimal number");
+//                break;
+//            case 2:
+//
+//                sv.setContentTitle("Save value of register");
+//                sv.setContentText("Long press again register name to save its value");
+//                break;
+//            case 3:
+//
+//                sv.hide();
+//                //startActivity(new Intent(this,Assemble.class));
+//                Log.d("Ritik", "nextshowcase: case 3");
+//                startActivity(new Intent(this,Assemble.class));
+//                Log.d("Ritik", "nextshowcase: case 3 not what you think");
+//                finish();
+//                //prefsHelper.firstrun(getApplicationContext());
+//                break;
+//
+//
+//        }
+//        counter++;
+//
+//    }
+
+
+//    @Override
+//    protected void onDestroy() {
+//        String[] reg_values={editText_reg_a_data.getText().toString(),
+//                            editText_reg_f_data.getText().toString(),
+//                            editText_reg_b_data.getText().toString(),
+//                            editText_reg_c_data.getText().toString(),
+//                            editText_reg_d_data.getText().toString(),
+//                            editText_reg_e_data.getText().toString(),
+//                            editText_reg_h_data.getText().toString(),
+//                            editText_reg_l_data.getText().toString(),
+//                            editText_reg_pc_data.getText().toString(),
+//                            editText_reg_sp_data.getText().toString()};
+//        reg_values=typeHelper.HexanArray(reg_values);
+//        prefsHelper.saveregister(getApplicationContext(),reg_values);
+//        super.onDestroy();
+//    }
+
+
+    @Override
+    public void onClick(View view) {
+
+    }
+
+    public void intialize() {
+        textView_reg_a = findViewById(R.id.textview_reg_a);
+        textView_reg_f = findViewById(R.id.textview_reg_f);
+        textView_reg_b = findViewById(R.id.textview_reg_b);
+        textView_reg_c = findViewById(R.id.textview_reg_c);
+        textView_reg_d = findViewById(R.id.textview_reg_d);
+        textView_reg_e = findViewById(R.id.textview_reg_e);
+        textView_reg_h = findViewById(R.id.textview_reg_h);
+        textView_reg_l = findViewById(R.id.textview_reg_l);
+        textView_reg_pc = findViewById(R.id.textview_reg_pc);
+        textView_reg_sp = findViewById(R.id.textview_reg_sp);
+
+        editText_reg_a_data = findViewById(R.id.edittext_reg_a_data);
+        editText_reg_f_data = findViewById(R.id.edittext_reg_f_data);
+        editText_reg_b_data = findViewById(R.id.edittext_reg_b_data);
+        editText_reg_c_data = findViewById(R.id.edittext_reg_c_data);
+        editText_reg_d_data = findViewById(R.id.edittext_reg_d_data);
+        editText_reg_e_data = findViewById(R.id.edittext_reg_e_data);
+        editText_reg_h_data = findViewById(R.id.edittext_reg_h_data);
+        editText_reg_l_data = findViewById(R.id.edittext_reg_l_data);
+        editText_reg_pc_data = findViewById(R.id.edittext_reg_pc_data);
+        editText_reg_sp_data = findViewById(R.id.edittext_reg_sp_data);
 
 
         editText_reg_a_data.setText(prefsHelper.getregister(getApplicationContext(), "a"));
@@ -68,18 +154,19 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
         editText_reg_sp_data.setText(prefsHelper.getregister(getApplicationContext(), "sp"));
 
 
-        imageButton_reg_a = (ImageButton) findViewById(R.id.imagebutton_reg_a);
-        imageButton_reg_b = (ImageButton) findViewById(R.id.imagebutton_reg_b);
-        imageButton_reg_c = (ImageButton) findViewById(R.id.imagebutton_reg_c);
-        imageButton_reg_d = (ImageButton) findViewById(R.id.imagebutton_reg_d);
-        imageButton_reg_e = (ImageButton) findViewById(R.id.imagebutton_reg_e);
-        imageButton_reg_f = (ImageButton) findViewById(R.id.imagebutton_reg_f);
-        imageButton_reg_h = (ImageButton) findViewById(R.id.imagebutton_reg_h);
-        imageButton_reg_l = (ImageButton) findViewById(R.id.imagebutton_reg_l);
-        imageButton_reg_pc = (ImageButton) findViewById(R.id.imagebutton_reg_pc);
-        imageButton_reg_sp = (ImageButton) findViewById(R.id.imagebutton_reg_sp);
+        imageButton_reg_a = findViewById(R.id.imagebutton_reg_a);
+        imageButton_reg_b = findViewById(R.id.imagebutton_reg_b);
+        imageButton_reg_c = findViewById(R.id.imagebutton_reg_c);
+        imageButton_reg_d = findViewById(R.id.imagebutton_reg_d);
+        imageButton_reg_e = findViewById(R.id.imagebutton_reg_e);
+        imageButton_reg_f = findViewById(R.id.imagebutton_reg_f);
+        imageButton_reg_h = findViewById(R.id.imagebutton_reg_h);
+        imageButton_reg_l = findViewById(R.id.imagebutton_reg_l);
+        imageButton_reg_pc = findViewById(R.id.imagebutton_reg_pc);
+        imageButton_reg_sp = findViewById(R.id.imagebutton_reg_sp);
+    }
 
-
+    public void onclicks() {
         imageButton_reg_a.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -661,85 +748,5 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
         });
         counter = 0;
         viewTarget = new ViewTarget(R.id.textview_reg_c, this);
-
-//        if(prefsHelper.isFirstrun(getApplicationContext())) {
-//        sv=new ShowcaseView.Builder(this)
-//                .setTarget(Target.NONE)
-//                .setContentTitle("Register Mode")
-//                .setContentText("This screen shows register values of 8085")
-//                .setStyle(R.style.CustomShowcaseTheme3)
-//                .setOnClickListener(
-//                        new View.OnClickListener() {
-//                            @Override
-//                            public void onClick(View view) {
-//                                nextshowcase();
-//                            }
-//                        }
-//
-//                )
-//                .build();
-//        sv.show();
-//
-//        }
-
-
-    }
-//    public void nextshowcase(){
-//        Log.d("Ritik", "nextshowcase: ");
-//        switch (counter) {
-//            case 0:
-//                sv.setShowcase(new ViewTarget(textView_reg_c),true);
-//                sv.setContentTitle("Change Radix of register");
-//                sv.setContentText("Tap on register name to change the radix of the register");
-//                break;
-//            case 1:
-//                sv.setShowcase(new ViewTarget(textView_reg_h), true);
-//                sv.setContentTitle("Edit value of register");
-//                sv.setContentText("Long press on register name to edit it value . Make sure you input a hexadecimal number");
-//                break;
-//            case 2:
-//
-//                sv.setContentTitle("Save value of register");
-//                sv.setContentText("Long press again register name to save its value");
-//                break;
-//            case 3:
-//
-//                sv.hide();
-//                //startActivity(new Intent(this,Assemble.class));
-//                Log.d("Ritik", "nextshowcase: case 3");
-//                startActivity(new Intent(this,Assemble.class));
-//                Log.d("Ritik", "nextshowcase: case 3 not what you think");
-//                finish();
-//                //prefsHelper.firstrun(getApplicationContext());
-//                break;
-//
-//
-//        }
-//        counter++;
-//
-//    }
-
-
-//    @Override
-//    protected void onDestroy() {
-//        String[] reg_values={editText_reg_a_data.getText().toString(),
-//                            editText_reg_f_data.getText().toString(),
-//                            editText_reg_b_data.getText().toString(),
-//                            editText_reg_c_data.getText().toString(),
-//                            editText_reg_d_data.getText().toString(),
-//                            editText_reg_e_data.getText().toString(),
-//                            editText_reg_h_data.getText().toString(),
-//                            editText_reg_l_data.getText().toString(),
-//                            editText_reg_pc_data.getText().toString(),
-//                            editText_reg_sp_data.getText().toString()};
-//        reg_values=typeHelper.HexanArray(reg_values);
-//        prefsHelper.saveregister(getApplicationContext(),reg_values);
-//        super.onDestroy();
-//    }
-
-
-    @Override
-    public void onClick(View view) {
-
     }
 }

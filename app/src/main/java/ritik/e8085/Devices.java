@@ -29,12 +29,12 @@ public class Devices extends Activity {
     SQLiteHelper SQLITEHELPER;
     SQLiteDatabase SQLITEDATABASE;
     Cursor cursor;
-    DevicesAdapter ListAdapter;
+    private DevicesAdapter ListAdapter;
 
     ArrayList<String> ADDRESS_ArrayList = new ArrayList<String>();
     ArrayList<String> CONTENT_ArrayList = new ArrayList<String>();
     ListView LISTVIEW;
-    TypeHelper typehelper;
+    private TypeHelper typehelper;
     ShowcaseView sv;
     int counter;
 
@@ -44,7 +44,7 @@ public class Devices extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_devices);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        LISTVIEW = (ListView) findViewById(R.id.listview_devices);
+        LISTVIEW = findViewById(R.id.listview_devices);
         ListAdapter = new DevicesAdapter(getApplicationContext(), ADDRESS_ArrayList, CONTENT_ArrayList);
         LISTVIEW.setAdapter(ListAdapter);
         SQLITEHELPER = new SQLiteHelper(this);
