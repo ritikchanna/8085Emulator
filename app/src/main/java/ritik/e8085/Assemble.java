@@ -17,7 +17,7 @@ import java.util.ArrayList;
 
 public class Assemble extends Activity implements AbsListView.OnScrollListener {
     ListView assemble_listview;
-    Assemble_adapter assembleAdapter;
+    private Assemble_adapter assembleAdapter;
     ArrayList<String> ADDRESS_ArrayList = new ArrayList<String>();
     ArrayList<String> CONTENT_ArrayList = new ArrayList<String>();
     InstructionDbHelper instructionDbHelper;
@@ -30,7 +30,7 @@ public class Assemble extends Activity implements AbsListView.OnScrollListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_assemble);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        assemble_listview = (ListView) (findViewById(R.id.listview_assemble));
+        assemble_listview = findViewById(R.id.listview_assemble);
 
 
         Log.d("Ritik", "onCreate: assemble 1");

@@ -22,7 +22,7 @@ import org.json.JSONObject;
 public class About extends AppCompatActivity {
     public static final int REQUEST_CODE = 77;
     TextView suggestion, developedby;
-    Button donate;
+    private Button donate;
     IInAppBillingService mService;
     ServiceConnection mServiceConn = new ServiceConnection() {
         @Override
@@ -43,7 +43,7 @@ public class About extends AppCompatActivity {
         setContentView(R.layout.activity_about);
         getSupportActionBar().hide();
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        suggestion = (TextView) findViewById(R.id.suggestions);
+        suggestion = findViewById(R.id.suggestions);
         suggestion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -65,7 +65,7 @@ public class About extends AppCompatActivity {
 
             }
         });
-        donate = (Button) findViewById(R.id.donate_btn);
+        donate = findViewById(R.id.donate_btn);
         donate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
