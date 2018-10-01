@@ -15,8 +15,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 
-import com.github.amlcurran.showcaseview.ShowcaseView;
-
 import java.util.ArrayList;
 
 import static ritik.e8085.SQLiteHelper.KEY_ADDRESS;
@@ -34,9 +32,9 @@ public class Devices extends Activity {
     ArrayList<String> ADDRESS_ArrayList = new ArrayList<String>();
     ArrayList<String> CONTENT_ArrayList = new ArrayList<String>();
     ListView LISTVIEW;
-    private TypeHelper typehelper;
-    ShowcaseView sv;
-    int counter;
+    //private TypeHelper typehelper;
+    //ShowcaseView sv;
+    //int counter;
 
 
     @Override
@@ -168,7 +166,7 @@ public class Devices extends Activity {
 
 
         if (cursor.moveToFirst()) {
-            Log.d("Ritik", "Cursor firsst address: " + cursor.getString((cursor.getColumnIndex(SQLiteHelper.KEY_ADDRESS))));
+            Log.d("Ritik", "Cursor firsst address: " + cursor.getString((cursor.getColumnIndex(KEY_ADDRESS))));
             do {
                 ADDRESS_ArrayList.add(cursor.getString(cursor.getColumnIndex(SQLiteHelper.KEY_ADDRESS)));
 
@@ -179,7 +177,7 @@ public class Devices extends Activity {
         cursor = SQLITEDATABASE.query(true, TABLE_NAME, new String[]{KEY_ADDRESS, KEY_CONTENT},
                 KEY_ADDRESS + " LIKE 'DI%'", null, null, null, null, null);
         if (cursor.moveToFirst()) {
-            Log.d("Ritik", "Cursor firsst address: " + cursor.getString((cursor.getColumnIndex(SQLiteHelper.KEY_ADDRESS))));
+            Log.d("Ritik", "Cursor firsst address: " + cursor.getString((cursor.getColumnIndex(KEY_ADDRESS))));
             do {
                 ADDRESS_ArrayList.add(cursor.getString(cursor.getColumnIndex(SQLiteHelper.KEY_ADDRESS)));
 
@@ -190,7 +188,7 @@ public class Devices extends Activity {
         cursor = SQLITEDATABASE.query(true, TABLE_NAME, new String[]{KEY_ADDRESS, KEY_CONTENT},
                 KEY_ADDRESS + " LIKE 'DO%'", null, null, null, null, null);
         if (cursor.moveToFirst()) {
-            Log.d("Ritik", "Cursor firsst address: " + cursor.getString((cursor.getColumnIndex(SQLiteHelper.KEY_ADDRESS))));
+            Log.d("Ritik", "Cursor firsst address: " + cursor.getString((cursor.getColumnIndex(KEY_ADDRESS))));
             do {
                 ADDRESS_ArrayList.add(cursor.getString(cursor.getColumnIndex(SQLiteHelper.KEY_ADDRESS)));
 

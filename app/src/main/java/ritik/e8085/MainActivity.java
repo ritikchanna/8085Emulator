@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
         adapter = new Grid(MainActivity.this, gridColor, edit, names);
         LayoutInflater layoutInflater = LayoutInflater.from(this);
         gridView = findViewById(R.id.gridview);
-        View headerView = layoutInflater.inflate(R.layout.app_header, null);
+        //View headerView = layoutInflater.inflate(R.layout.app_header, null);
         //gridView.addHeaderView(headerView);
 
 

@@ -31,14 +31,14 @@ public class Memory extends Activity implements AbsListView.OnScrollListener {
     ListView LISTVIEW;
     TypeHelper typehelper;
     String last_memory = "0000G";
-    private boolean isLoadMore = false;
+    //private boolean isLoadMore = false;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_memory);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        LISTVIEW = (ListView) findViewById(R.id.listview_memory_locations);
+        LISTVIEW = findViewById(R.id.listview_memory_locations);
         ListAdapter = new SQLiteListAdapter(getApplicationContext(), ADDRESS_ArrayList, CONTENT_ArrayList);
         LISTVIEW.setAdapter(ListAdapter);
         LISTVIEW.setRecyclerListener(new AbsListView.RecyclerListener() {
@@ -143,9 +143,9 @@ public class Memory extends Activity implements AbsListView.OnScrollListener {
         //ADDRESS_ArrayList.clear();
         //CONTENT_ArrayList.clear();
 
-        final int index = LISTVIEW.getFirstVisiblePosition();
+        //final int index = LISTVIEW.getFirstVisiblePosition();
         View v = LISTVIEW.getChildAt(0);
-        final int top = (v == null) ? 0 : v.getTop();
+        //final int top = (v == null) ? 0 : v.getTop();
 
 
         if (cursor.moveToFirst()) {

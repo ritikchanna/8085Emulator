@@ -23,7 +23,7 @@ public class InstructionDbHelper extends SQLiteOpenHelper {
     private static final String COLUMN_ID = "_id";
     private static final String COLUMN_BYTE = "byte";
     private static final String COLUMN_TIME = "time";
-    private static final String COLUMN_DATA = "data";
+    //private static final String COLUMN_DATA = "data";
     // database path
     private static String DATABASE_PATH;
     private final Context context;
@@ -44,7 +44,7 @@ public class InstructionDbHelper extends SQLiteOpenHelper {
      * Creates a empty database on the system and rewrites it with your own
      * database.
      */
-    public void create() throws IOException {
+    public void create() {
         boolean check = checkDataBase();
 
         SQLiteDatabase db_Read;

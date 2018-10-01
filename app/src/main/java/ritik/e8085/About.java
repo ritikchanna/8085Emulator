@@ -47,11 +47,11 @@ public class About extends AppCompatActivity {
         suggestion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
+                final Intent emailIntent = new Intent(Intent.ACTION_SEND);
                 emailIntent.setType("text/plain");
 
-                emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[]{"leotiklabs@gmail.com"});
-                emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Regarding 8085 Emulator App (Leotik Labs)");
+                emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{"leotiklabs@gmail.com"});
+                emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Regarding 8085 Emulator App (Leotik Labs)");
                 emailIntent.setType("message/rfc822");
 
                 try {
@@ -93,14 +93,14 @@ public class About extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_CODE) {
-            int responseCode = data.getIntExtra("RESPONSE_CODE", 0);
+            //int responseCode = data.getIntExtra("RESPONSE_CODE", 0);
             String purchaseData = data.getStringExtra("INAPP_PURCHASE_DATA");
-            String dataSignature = data.getStringExtra("INAPP_DATA_SIGNATURE");
+            //String dataSignature = data.getStringExtra("INAPP_DATA_SIGNATURE");
 
             if (resultCode == RESULT_OK) {
                 try {
                     JSONObject jo = new JSONObject(purchaseData);
-                    String sku = jo.getString("productId");
+                    //String sku = jo.getString("productId");
                     Toast.makeText(About.this, "Thank You !!", Toast.LENGTH_LONG);
                     donate.setEnabled(false);
 

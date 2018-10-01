@@ -21,7 +21,7 @@ public class SQLiteHelper extends SQLiteAssetHelper {
     public static final String KEY_CONTENT = "content";
     private static String DATABASE_NAME = "re8085";
     Context context;
-    private SQLiteDatabase db;
+    //private SQLiteDatabase db;
 
     public SQLiteHelper(Context context) {
 
