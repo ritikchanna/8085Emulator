@@ -1,5 +1,8 @@
 8085 Emulator
 ======
+
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/75560e17be934d9496814db037701db1)](https://app.codacy.com/app/ritikchanna/8085Emulator?utm_source=github.com&utm_medium=referral&utm_content=ritikchanna/8085Emulator&utm_campaign=Badge_Grade_Dashboard)
+
 An easy to use and fully functional 8085 Microprocessor Emulator for Android. Now test those 8085 programs right on your Android Device without any need of extra hardware.
 
 <a href="https://play.google.com/store/apps/details?id=ritik.e8085"><img src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png" height="60"></a>
